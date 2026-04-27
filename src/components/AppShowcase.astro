@@ -1,0 +1,34 @@
+---
+import AppCard from './AppCard.astro';
+import type { App } from '../data/apps';
+
+interface Props {
+  apps: App[];
+}
+
+const { apps } = Astro.props;
+---
+
+<section class="app-showcase">
+  <h2 class="section-title">Projects</h2>
+  <div class="app-grid">
+    {apps.map((app) => (
+      <AppCard title={app.title} description={app.description} url={app.url} icon={app.icon} />
+    ))}
+  </div>
+</section>
+
+<style>
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: var(--space-lg);
+    color: var(--color-text);
+  }
+
+  .app-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--space-md);
+  }
+</style>

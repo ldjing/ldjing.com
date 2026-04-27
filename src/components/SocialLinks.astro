@@ -1,0 +1,69 @@
+---
+const links = [
+  {
+    name: 'X (Twitter)',
+    url: 'https://x.com/ldjing',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>`,
+  },
+  {
+    name: 'GitHub',
+    url: 'https://github.com/ldjing',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>`,
+  },
+];
+---
+
+<section class="social-section">
+  <h2 class="section-title">Find me</h2>
+  <div class="social-links">
+    {links.map((link) => (
+      <a href={link.url} class="social-link" target="_blank" rel="noopener">
+        <span class="social-icon" set:html={link.icon} />
+        <span class="social-name">{link.name}</span>
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+  .section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: var(--space-lg);
+    color: var(--color-text);
+  }
+
+  .social-links {
+    display: flex;
+    gap: var(--space-lg);
+    flex-wrap: wrap;
+  }
+
+  .social-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    color: var(--color-text);
+    font-size: 0.9375rem;
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+
+  .social-link:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 2px 8px rgba(196, 112, 75, 0.12);
+    color: var(--color-text);
+  }
+
+  .social-icon {
+    display: flex;
+    align-items: center;
+    color: var(--color-text-muted);
+  }
+
+  .social-link:hover .social-icon {
+    color: var(--color-accent);
+  }
+</style>
