@@ -2,9 +2,11 @@
 interface Props {
   title: string;
   description: string;
+  jsonLd?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, jsonLd } = Astro.props;
+const siteUrl = 'https://ldjing.com';
 const year = new Date().getFullYear();
 ---
 
@@ -14,17 +16,30 @@ const year = new Date().getFullYear();
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <meta name="generator" content={Astro.generator} />
+    <meta name="author" content="Liang Dongjing" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={siteUrl} />
 
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content={Astro.url.href} />
+    <meta property="og:type" content="profile" />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:image" content={`${siteUrl}/images/avatar/portrait.jpg`} />
+    <meta property="profile:first_name" content="Dongjing" />
+    <meta property="profile:last_name" content="Liang" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@ldjing" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteUrl}/images/avatar/portrait.jpg`} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href={Astro.url.href} />
     <title>{title}</title>
+
+    {jsonLd && <script type="application/ld+json" set:html={jsonLd} />}
   </head>
   <body>
     <div class="container">

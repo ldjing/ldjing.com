@@ -8,8 +8,8 @@ interface Props {
 const { photos } = Astro.props;
 ---
 
-<section class="photo-section">
-  <h2 class="section-title">Photography</h2>
+<section class="photo-section" id="photography" aria-labelledby="photography-heading">
+  <h2 class="section-title" id="photography-heading">Photography</h2>
   <div class="photo-grid">
     {photos.map((photo) => (
       <div class="photo-item">

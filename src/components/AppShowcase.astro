@@ -9,8 +9,8 @@ interface Props {
 const { apps } = Astro.props;
 ---
 
-<section class="app-showcase">
-  <h2 class="section-title">Projects</h2>
+<section class="app-showcase" id="apps" aria-labelledby="apps-heading">
+  <h2 class="section-title" id="apps-heading">Apps</h2>
   <div class="app-grid">
     {apps.map((app) => (
       <AppCard title={app.title} description={app.description} url={app.url} icon={app.icon} />
