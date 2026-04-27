@@ -10,7 +10,7 @@ const { title, description, url, icon } = Astro.props;
 ---
 
 <a href={url} class="app-card" target="_blank" rel="noopener">
-  <span class="app-icon">{icon}</span>
+  <img class="app-icon" src={icon} alt={title} width="56" height="56" />
   <div class="app-info">
     <h3 class="app-title">{title}</h3>
     <p class="app-desc">{description}</p>
@@ -37,8 +37,10 @@ const { title, description, url, icon } = Astro.props;
   }
 
   .app-icon {
-    font-size: 2rem;
-    line-height: 1;
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    object-fit: cover;
     flex-shrink: 0;
   }
 
