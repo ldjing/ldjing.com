@@ -20,5 +20,8 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
+# raw source assets
+临时素材/
+
 # jetbrains setting folder
 .idea/
