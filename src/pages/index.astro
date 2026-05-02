@@ -10,25 +10,55 @@ import { photos } from '../data/photos';
 
 const title = 'Liang Dongjing — Indie iOS Developer & Photographer';
 const description = 'Liang Dongjing is an indie iOS developer and photographer based in China. Creator of Contura, JustPad, BuzzCam, MemoryLens, SaltTrack, and BallDecide.';
+const profileImage = 'https://ldjing.com/images/avatar/liangdongjingavatar.jpg';
 
 const jsonLd = JSON.stringify({
   '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Liang Dongjing',
-  alternateName: 'ldjing',
-  url: 'https://ldjing.com',
-  image: 'https://ldjing.com/images/avatar/portrait.jpg',
-  jobTitle: 'Indie iOS Developer',
-  description: 'Indie iOS developer and photographer based in China.',
-  sameAs: [
-    'https://x.com/ldjing',
-    'https://github.com/ldjing',
+  '@graph': [
+    {
+      '@type': 'ImageObject',
+      '@id': `${profileImage}#primaryimage`,
+      url: profileImage,
+      contentUrl: profileImage,
+      width: 1122,
+      height: 1402,
+      caption: 'Portrait of Liang Dongjing',
+    },
+    {
+      '@type': 'Person',
+      '@id': 'https://ldjing.com/#person',
+      name: 'Liang Dongjing',
+      alternateName: 'ldjing',
+      url: 'https://ldjing.com',
+      image: {
+        '@id': `${profileImage}#primaryimage`,
+      },
+      jobTitle: 'Indie iOS Developer',
+      description: 'Indie iOS developer and photographer based in China.',
+      sameAs: [
+        'https://x.com/ldjing',
+        'https://github.com/ldjing',
+      ],
+      knowsAbout: ['iOS Development', 'Swift', 'Photography', 'App Development'],
+      worksFor: {
+        '@type': 'Organization',
+        name: 'Independent',
+      },
+    },
+    {
+      '@type': 'WebPage',
+      '@id': 'https://ldjing.com/#webpage',
+      url: 'https://ldjing.com',
+      name: title,
+      description,
+      primaryImageOfPage: {
+        '@id': `${profileImage}#primaryimage`,
+      },
+      about: {
+        '@id': 'https://ldjing.com/#person',
+      },
+    },
   ],
-  knowsAbout: ['iOS Development', 'Swift', 'Photography', 'App Development'],
-  worksFor: {
-    '@type': 'Organization',
-    name: 'Independent',
-  },
 });
 ---
 
@@ -46,7 +76,7 @@ const jsonLd = JSON.stringify({
   main {
     display: flex;
     flex-direction: column;
-    gap: var(--space-2xl);
-    padding-bottom: var(--space-xl);
+    gap: clamp(4.5rem, 9vw, 7rem);
+    padding: var(--space-lg) 0 var(--space-xl);
   }
 </style>

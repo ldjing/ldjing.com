@@ -7,16 +7,23 @@
 }
 
 :root {
-  --color-bg: #faf8f5;
-  --color-bg-alt: #f3efe9;
-  --color-text: #2c2825;
-  --color-text-muted: #8a8279;
-  --color-accent: #c4704b;
-  --color-accent-hover: #b35f3a;
-  --color-border: #e8e2db;
-  --color-card-bg: #ffffff;
+  --color-bg: #f7f4ee;
+  --color-bg-alt: #ece5da;
+  --color-surface: #fffdf8;
+  --color-text: #25211d;
+  --color-text-muted: #706a62;
+  --color-text-soft: #9a9186;
+  --color-accent: #b45f3d;
+  --color-accent-hover: #8f4529;
+  --color-sage: #5f725f;
+  --color-ink: #1d1b18;
+  --color-border: #ded5c8;
+  --color-border-strong: #c8baaa;
+  --color-card-bg: #fffaf1;
+  --shadow-soft: 0 22px 70px rgba(37, 33, 29, 0.09);
 
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: var(--font-serif);
 
   --space-xs: 0.25rem;
   --space-sm: 0.5rem;
@@ -25,7 +32,7 @@
   --space-xl: 4rem;
   --space-2xl: 6rem;
 
-  --max-width: 960px;
+  --max-width: 1120px;
   --radius: 8px;
 
   --transition: 200ms ease;
@@ -34,14 +41,32 @@
 html {
   font-family: var(--font-sans);
   color: var(--color-text);
-  background-color: var(--color-bg);
+  background:
+    linear-gradient(180deg, rgba(255, 253, 248, 0.7) 0%, rgba(247, 244, 238, 0) 420px),
+    var(--color-bg);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 body {
   min-height: 100dvh;
+  color: var(--color-text);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.34;
+  background-image:
+    linear-gradient(rgba(37, 33, 29, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 33, 29, 0.025) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 72%);
+  z-index: -1;
 }
 
 img {
@@ -58,4 +83,13 @@ a {
 
 a:hover {
   color: var(--color-accent-hover);
+}
+
+section {
+  scroll-margin-top: 6rem;
+}
+
+::selection {
+  color: var(--color-ink);
+  background: #e7c7ad;
 }

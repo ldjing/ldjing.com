@@ -16,7 +16,10 @@ const links = [
 ---
 
 <section class="social-section" id="social" aria-labelledby="social-heading">
-  <h2 class="section-title" id="social-heading">Find me</h2>
+  <div>
+    <p class="section-kicker">Contact</p>
+    <h2 class="section-title" id="social-heading">Follow the work as it ships.</h2>
+  </div>
   <div class="social-links">
     {links.map((link) => (
       <a href={link.url} class="social-link" target="_blank" rel="noopener me" aria-label={link.label}>
@@ -28,44 +31,80 @@ const links = [
 </section>
 
 <style>
+  .social-section {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--space-lg);
+    align-items: end;
+    padding: var(--space-lg) 0;
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .section-kicker {
+    margin-bottom: var(--space-sm);
+    color: var(--color-accent);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
   .section-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: var(--space-lg);
+    max-width: 520px;
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw, 3.8rem);
+    font-weight: 500;
+    line-height: 1.04;
     color: var(--color-text);
   }
 
   .social-links {
     display: flex;
-    gap: var(--space-lg);
+    gap: var(--space-sm);
     flex-wrap: wrap;
+    justify-content: flex-end;
   }
 
   .social-link {
     display: inline-flex;
     align-items: center;
+    min-height: 2.75rem;
     gap: var(--space-sm);
-    padding: var(--space-sm) var(--space-md);
+    padding: 0 var(--space-md);
+    background: var(--color-surface);
     border: 1px solid var(--color-border);
-    border-radius: var(--radius);
+    border-radius: 999px;
     color: var(--color-text);
-    font-size: 0.9375rem;
-    transition: border-color var(--transition), box-shadow var(--transition);
+    font-size: 0.94rem;
+    font-weight: 650;
+    transition:
+      border-color var(--transition),
+      box-shadow var(--transition),
+      color var(--transition),
+      transform var(--transition);
   }
 
   .social-link:hover {
     border-color: var(--color-accent);
-    box-shadow: 0 2px 8px rgba(196, 112, 75, 0.12);
-    color: var(--color-text);
+    box-shadow: 0 12px 32px rgba(180, 95, 61, 0.12);
+    color: var(--color-accent);
+    transform: translateY(-1px);
   }
 
   .social-icon {
     display: flex;
     align-items: center;
-    color: var(--color-text-muted);
   }
 
-  .social-link:hover .social-icon {
-    color: var(--color-accent);
+  @media (max-width: 700px) {
+    .social-section {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+
+    .social-links {
+      justify-content: flex-start;
+    }
   }
 </style>

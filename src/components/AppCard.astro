@@ -10,7 +10,10 @@ const { title, description, url, icon } = Astro.props;
 ---
 
 <a href={url} class="app-card" target="_blank" rel="noopener">
-  <img class="app-icon" src={icon} alt={title} width="56" height="56" />
+  <div class="app-topline">
+    <img class="app-icon" src={icon} alt={title} width="56" height="56" />
+    <span class="app-arrow" aria-hidden="true">↗</span>
+  </div>
   <div class="app-info">
     <h3 class="app-title">{title}</h3>
     <p class="app-desc">{description}</p>
@@ -19,40 +22,76 @@ const { title, description, url, icon } = Astro.props;
 
 <style>
   .app-card {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-md);
+    display: grid;
+    align-content: space-between;
+    min-height: 245px;
+    gap: var(--space-lg);
     padding: var(--space-lg);
-    background: var(--color-card-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius);
-    transition: box-shadow var(--transition), transform var(--transition);
+    background: rgba(255, 250, 241, 0.72);
+    border-right: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
     color: var(--color-text);
+    transition:
+      background var(--transition),
+      box-shadow var(--transition),
+      transform var(--transition);
   }
 
   .app-card:hover {
-    box-shadow: 0 4px 16px rgba(44, 40, 37, 0.08);
+    background: var(--color-surface);
+    box-shadow: 0 18px 50px rgba(37, 33, 29, 0.08);
     transform: translateY(-2px);
     color: var(--color-text);
+  }
+
+  .app-topline {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-md);
   }
 
   .app-icon {
     width: 56px;
     height: 56px;
-    border-radius: 12px;
+    border: 1px solid rgba(37, 33, 29, 0.08);
+    border-radius: 14px;
     object-fit: cover;
     flex-shrink: 0;
+    box-shadow: 0 10px 28px rgba(37, 33, 29, 0.08);
+  }
+
+  .app-arrow {
+    display: inline-grid;
+    place-items: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    color: var(--color-text-muted);
+    transition:
+      border-color var(--transition),
+      color var(--transition),
+      transform var(--transition);
+  }
+
+  .app-card:hover .app-arrow {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+    transform: translate(2px, -2px);
   }
 
   .app-title {
-    font-size: 1.125rem;
-    font-weight: 600;
-    margin-bottom: var(--space-xs);
+    font-family: var(--font-serif);
+    font-size: clamp(1.45rem, 2vw, 1.9rem);
+    font-weight: 500;
+    line-height: 1.1;
+    margin-bottom: var(--space-sm);
   }
 
   .app-desc {
-    font-size: 0.875rem;
+    font-size: 0.96rem;
     color: var(--color-text-muted);
-    line-height: 1.5;
+    line-height: 1.6;
   }
 </style>

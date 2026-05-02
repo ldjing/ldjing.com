@@ -10,7 +10,10 @@ const { apps } = Astro.props;
 ---
 
 <section class="app-showcase" id="apps" aria-labelledby="apps-heading">
-  <h2 class="section-title" id="apps-heading">Apps</h2>
+  <div class="section-heading">
+    <p class="section-kicker">Apps</p>
+    <h2 class="section-title" id="apps-heading">Useful software with a narrow promise.</h2>
+  </div>
   <div class="app-grid">
     {apps.map((app) => (
       <AppCard title={app.title} description={app.description} url={app.url} icon={app.icon} />
@@ -19,16 +22,54 @@ const { apps } = Astro.props;
 </section>
 
 <style>
+  .app-showcase {
+    display: grid;
+    gap: var(--space-lg);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .section-heading {
+    display: grid;
+    grid-template-columns: minmax(180px, 0.42fr) minmax(0, 0.58fr);
+    gap: var(--space-lg);
+    align-items: end;
+  }
+
+  .section-kicker {
+    color: var(--color-accent);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
   .section-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-bottom: var(--space-lg);
+    max-width: 620px;
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw, 3.8rem);
+    font-weight: 500;
+    line-height: 1.04;
     color: var(--color-text);
   }
 
   .app-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: var(--space-md);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-top: 1px solid var(--color-border);
+    border-left: 1px solid var(--color-border);
+  }
+
+  @media (max-width: 920px) {
+    .app-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 700px) {
+    .section-heading,
+    .app-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
